@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 function FrontHero() {
   return (
-    <div className="container-fluid  bg-light fronthero_color vh-100 d-flex align-items-center justify-content-center">
-      <div className="shadow bg-dark  fronthero_container p-2">
+    <div className="container-fluid  bg-info fronthero_color vh-100 d-flex align-items-center justify-content-center">
+      <div className="shadow bg-dark  fronthero_container p-4">
         <div className="fronthero_imgcontainer  overflow-hidden d-flex align-items-center justify-content-center">
           <div className="h-100 fronthero_radius">
             <img src={hero} alt="img" className="img-fluid fronthero_img" />

@@ -1,9 +1,10 @@
 import React from "react";
 import "./Styles/Login.css";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
-    <div className="container-fluid vh-100 bg-light d-flex align-items-center justify-content-center">
+    <div className="container-fluid vh-100 bg-info d-flex align-items-center justify-content-center">
       <div className="login_container bg-dark p-5 shadow">
         <div className="align-items-center justify-content-center d-flex">
           <h1 className="text-light login_header">Login Please !</h1>
@@ -33,9 +34,11 @@ function Login() {
             />
           </div>
           <div className="align-items-center justify-content-center d-flex p-3">
-            <button type="submit" class="btn btn-primary ">
-              Login
-            </button>
+            <Link to="/home">
+              <button type="submit" class="btn btn-primary ">
+                Login
+              </button>
+            </Link>
           </div>
         </form>
       </div>

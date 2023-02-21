@@ -1,12 +1,13 @@
 import React from "react";
-import './Styles/Reg.css'
+import "./Styles/Reg.css";
+import { Link } from "react-router-dom";
 
 function Reg() {
   return (
-    <div className="container_fluid vh-100 bg-light d-flex align-items-center justify-content-center">
+    <div className="container_fluid vh-100 bg-info d-flex align-items-center justify-content-center">
       <div className="reg_container bg-dark p-5">
         <div className="d-flex align-items-center justify-content-center text-light">
-            <h1 className="reg_header">Register Yourself !</h1>
+          <h1 className="reg_header">Register Yourself !</h1>
         </div>
         <form>
           <div class="row">
@@ -67,9 +68,11 @@ function Reg() {
             />
           </div>
           <div className="d-flex align-items-center justify-content-center">
-                <button type="submit" class="btn btn-danger m-3">
-            Register
-          </button>
+            <Link to="/home">
+              <button type="submit" class="btn btn-danger m-3">
+                Register
+              </button>
+            </Link>
           </div>
         </form>
       </div>
