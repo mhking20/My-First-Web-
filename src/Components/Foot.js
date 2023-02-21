@@ -5,7 +5,7 @@ import './Styles/Foot.css'
 function Foot() {
   return (
     <footer className="footer bg-dark p-3 fixed-bottom">
-      <div className="container foot_container d-flex align-items-center justify-content-center p-3Name">
+      <div className="container foot_container d-flex align-items-center justify-content-center p-3">
         <span className="text-muted">
           Copyright &copy; 2023
           <Link to="/home" className="foot_icon">Mian Website</Link>
