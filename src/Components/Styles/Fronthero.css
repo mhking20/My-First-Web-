@@ -1,0 +1,36 @@
+.fronthero_container {
+    height : 50vh;
+    width : 50vw;
+   
+}
+
+.fronthero_color{
+   
+}
+
+.fronthero_img{
+    height : 140%;
+}
+
+.fronthero_radius{
+    border-radius: 100%;
+    overflow: hidden;
+}
+.fronthero_imgcontainer{
+    height : 70%;
+}
+.fronthero_btncontainer{
+    height: 30%;
+}
+@media only screen and (max-width : 500px){
+    .fronthero_container {
+        height : 50vh;
+        width : 80vw;
+    }
+    .fronthero_imgcontainer{
+        height : 50%;
+    }
+    .fronthero_btncontainer{
+        height: 50%;
+    }
+}
