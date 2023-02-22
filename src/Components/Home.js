@@ -5,10 +5,11 @@ import Foot from "./Foot";
 import Intro from './Intro';
 
 function Home() {
+
   return (
     <div className="vh-100 bg-info">
       <Nav />
-      <Intro />
+      <Intro/>
       <Foot />
     </div>
   );

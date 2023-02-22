@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 
 function Intro() {
   return (
@@ -8,7 +9,9 @@ function Intro() {
           <h1>Welcome To My Full Stack Website</h1>
         </div>
         <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center mt-5 mb-5">
-            <button className="btn btn-primary">View My Projects</button>
+          <Link to='/projects'>
+          <button className="btn btn-primary">View My Projects</button>
+          </Link>
         </div>
       </div>
       <hr/>
