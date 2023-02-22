@@ -4,7 +4,7 @@ import Foot from "./Foot";
 import AccountContainer from "./AccountContainer";
 function Account() {
   return (
-    <div className="vh-100 bg-info">
+    <div className="h-100 bg-info">
       <Nav />
       <YourAccount />
       <AccountContainer />

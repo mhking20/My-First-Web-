@@ -1,3 +1,17 @@
 .account_container {
-    margin-bottom: 500px;
+    width : 50%;
+}
+
+@media only screen and (max-width : 900px){
+    .account_container {
+        width : 80%;
+    }
+    
+}
+
+@media only screen and (max-width : 600px){
+    .account_container {
+        width : 100%;
+    }
+    
 }
