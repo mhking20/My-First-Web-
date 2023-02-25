@@ -31,7 +31,7 @@ function Reg({ login_form }) {
 
     const post = async () => {
       try {
-        const post = await axios.post("http://localhost:3001/api/v1", {
+        const post = await axios.post("http://mian-first-web.onrender.com/api/v1", {
           fullname,
           username,
           email,
