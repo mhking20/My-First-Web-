@@ -2,12 +2,14 @@ import React from "react";
 import './Styles/Update.css'
 import Nav from "./Nav";
 import Foot from "./Foot";
+import {Navfixed} from "./Nav";
 import {Link} from 'react-router-dom'
 
 function UpdateAccount() {
   return (
     <div className="vh-100 bg-info">
       <Nav />
+      <Navfixed />
       <Tabel />
       <Foot />
     </div>

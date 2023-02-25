@@ -2,12 +2,14 @@ import React from "react";
 import "./Styles/Projects.css";
 import Nav from "./Nav";
 import Foot from "./Foot";
+import {Navfixed} from "./Nav";
 import ProjectsContainer from './ProjectsContainer'
 
 function Projects() {
   return (
     <div className="bg-info h-100">
       <Nav />
+      <Navfixed />
       <ProjectsIntro />
       <ProjectsContainer />
       <Foot />

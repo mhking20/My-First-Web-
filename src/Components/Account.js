@@ -1,11 +1,13 @@
 import React from "react";
 import Nav from "./Nav";
 import Foot from "./Foot";
+import {Navfixed} from "./Nav";
 import AccountContainer from "./AccountContainer";
 function Account() {
   return (
     <div className="h-100 bg-info">
       <Nav />
+      <Navfixed />
       <YourAccount />
       <AccountContainer />
       <Foot />

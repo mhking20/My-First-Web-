@@ -16,6 +16,12 @@ td {
     font-size: x-large;
 }
 
+.alert {
+    margin-top: 20px;
+    padding: 5px;
+    text-align: center;
+}
+
 @media only screen and (max-width : 400px){
     .textsm{
         font-size: medium;

@@ -14,5 +14,4 @@ function Foot() {
     </footer>
   );
 }
-
 export default Foot;
