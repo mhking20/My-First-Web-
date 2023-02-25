@@ -3,14 +3,20 @@ import "./Styles/Acount.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
-function AccountContainer({account_info , id , fullname , username , email}) {
+function AccountContainer({ account_info, id, fullname, username, email }) {
   const get = async () => {
-    const token = localStorage.getItem("token");
-    const get = await axios.get("http://localhost:3001/api/v1/user", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const info = get.data.get;
-    account_info(info._id , info.fullname , info.username , info.email)
+    try {
+      const token = localStorage.getItem("token");
+      const get = await axios.get("http://localhost:3001/api/v1/user", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const info = get.data.get;
+      console.log(info);
+      account_info(info._id, info.fullname, info.username, info.email);
+    } catch (error) {
+      localStorage.removeItem("token");
+      console.log(error);
+    }
   };
   get();
   return (
@@ -57,12 +63,11 @@ const useDispatchToState = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    id : state.Account_id,
-    fullname : state.Account_fullname,
-    username : state.Account_username,
-    email : state.Account_email,
-  }
-}
-
+    id: state.Account_id,
+    fullname: state.Account_fullname,
+    username: state.Account_username,
+    email: state.Account_email,
+  };
+};
 
 export default connect(mapStateToProps, useDispatchToState)(AccountContainer);

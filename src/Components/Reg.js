@@ -30,14 +30,19 @@ function Reg({ login_form }) {
     }
 
     const post = async () => {
-      const post = await axios.post("http://localhost:3001/api/v1", {
-        fullname,
-        username,
-        email,
-        password,
-      });
-      localStorage.setItem("token" , post.data.token)
-      return post;
+      try {
+        const post = await axios.post("http://localhost:3001/api/v1", {
+          fullname,
+          username,
+          email,
+          password,
+        });
+        localStorage.setItem("token", post.data.token);
+        return post;
+      } catch (error) {
+        localStorage.removeItem("token");
+        console.log(error);
+      }
     };
 
     post();
