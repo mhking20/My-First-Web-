@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 function AccountContainer({account_info , id , fullname , username , email}) {
   const get = async () => {
     const token = localStorage.getItem("token");
-    const get = await axios.get("http://localhost:3001/api/v1/user", {
+    const get = await axios.get("https://mian-first-web.onrender.com/api/v1/user", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const info = get.data.get;
