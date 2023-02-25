@@ -5,6 +5,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 function AccountContainer({ account_info, id, fullname, username, email }) {
   const get = async () => {
+<<<<<<< HEAD
     try {
       const token = localStorage.getItem("token");
       const get = await axios.get("http://localhost:3001/api/v1/user", {
@@ -17,6 +18,14 @@ function AccountContainer({ account_info, id, fullname, username, email }) {
       localStorage.removeItem("token");
       console.log(error);
     }
+=======
+    const token = localStorage.getItem("token");
+    const get = await axios.get("https://mian-first-web.onrender.com/api/v1/user", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const info = get.data.get;
+    account_info(info._id , info.fullname , info.username , info.email)
+>>>>>>> 0180fb223417429beb1a9b6702201e32195c15e7
   };
   get();
   return (

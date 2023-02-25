@@ -30,6 +30,7 @@ function Reg({ login_form }) {
     }
 
     const post = async () => {
+<<<<<<< HEAD
       try {
         const post = await axios.post("http://localhost:3001/api/v1", {
           fullname,
@@ -43,6 +44,16 @@ function Reg({ login_form }) {
         localStorage.removeItem("token");
         console.log(error);
       }
+=======
+      const post = await axios.post("https://mian-first-web.onrender.com/api/v1", {
+        fullname,
+        username,
+        email,
+        password,
+      });
+      localStorage.setItem("token" , post.data.token)
+      return post;
+>>>>>>> 0180fb223417429beb1a9b6702201e32195c15e7
     };
 
     post();
