@@ -84,7 +84,7 @@ const Tabel = ({
         email = current_email;
       }
       const update = await axios.patch(
-        "http://mian-first-web.onrender.com/api/v1/user",
+        "https://mian-first-web.onrender.com/api/v1/user",
         { fullname, username, email },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -98,7 +98,7 @@ const Tabel = ({
   const get = async () => {
     try {
       const token = localStorage.getItem("token");
-      const get = await axios.get("http://mian-first-web.onrender.com/api/v1/user", {
+      const get = await axios.get("https://mian-first-web.onrender.com/api/v1/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const info = get.data.get;
