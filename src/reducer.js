@@ -8,7 +8,7 @@ const initialState = {
   Account_username: "",
   Account_email: "",
   Account_id: "",
-  alert: "",
+  auth : true
 };
 
 const reducer = (state = initialState, action) => {
@@ -29,6 +29,11 @@ const reducer = (state = initialState, action) => {
       Account_id : action.payload._id,
       Account_username : action.payload.username,
       Account_email : action.payload.email,
+    }
+  }
+  if(action.type === "AUTH"){
+    return {
+      ...state , auth : action.payload
     }
   }
   return state;

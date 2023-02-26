@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { createBrowserRouter , RouterProvider  } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FrontHero from "./Components/FrontHero";
 import Login from "./Components/Login";
 import Reg from "./Components/Reg";
@@ -9,7 +9,8 @@ import Projects from "./Components/Projects";
 import Account from "./Components/Account";
 import UpdateAccount from "./Components/UpdateAccount";
 
-function App(){ 
+function App() {
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -39,11 +40,13 @@ function App(){
       path: "updateaccount",
       element: <UpdateAccount />,
     },
-  ])
-   return  <>
-   <RouterProvider router={router}></RouterProvider>
-   </>
-  };
+  ]);
+  return (
+    <>
+      <RouterProvider router={router}></RouterProvider>
+    </>
+  );
+}
+ 
 
-
-export default App;
+export default App

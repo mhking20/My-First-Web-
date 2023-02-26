@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import "./Styles/Nav.css";
 
 function Nav() {
+  const removetoken = () => {
+    return localStorage.removeItem("token")
+  }
+
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark bg-dark p-3`}>
       <Link to="/home" className="navbar-brand">
@@ -37,7 +41,7 @@ function Nav() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/" className="nav-link">
+            <Link to="/" className="nav-link" onClick={() => removetoken()}>
               Logout
             </Link>
           </li>

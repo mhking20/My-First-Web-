@@ -7,48 +7,42 @@ import axios from "axios";
 function Reg({ login_form }) {
   const alertRef = useRef();
   const navigate = useNavigate();
-  const handelsubmit = (e) => {
+  const handelsubmit = async (e) => {
     e.preventDefault();
     const fullname = e.target.name.value;
     const username = e.target.username.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmpassword = e.target.confirmpassword.value;
-    const alert_default = () => {
-      setTimeout(() => {
-        alertRef.current.classList.add("collapse");
-      }, 2000);
-    };
+    // const alert_default = () => {
+    //   setTimeout(() => {
+    //     alertRef.current.classList.add("collapse");
+    //   }, 2000);
+    // };
 
-    if (password !== confirmpassword) {
-      return (
-        alertRef.current.classList.remove("collapse"),
-        alertRef.current.classList.add("bg-danger", "text-light"),
-        (alertRef.current.textContent = "Your Password Does Not Matched"),
-        alert_default()
-      );
+    // if (password !== confirmpassword) {
+    //   return (
+    //     alertRef.current.classList.remove("collapse"),
+    //     alertRef.current.classList.add("bg-danger", "text-light"),
+    //     (alertRef.current.textContent = "Your Password Does Not Matched"),
+    //     alert_default()
+    //   );
+    // }
+    try {
+      const post = await axios.post("https://mian-first-web.onrender.com/api/v1", {
+        fullname,
+        username,
+        email,
+        password,
+      });
+      localStorage.setItem("token", post.data.token);
+      login_form({ fullname, username, email, password, confirmpassword });
+      navigate("/home");
+      return post;
+    } catch (error) {
+      localStorage.removeItem("token");
+      console.log(error);
     }
-
-    const post = async () => {
-      try {
-        const post = await axios.post("http://localhost:3001/api/v1", {
-          fullname,
-          username,
-          email,
-          password,
-        });
-        localStorage.setItem("token", post.data.token);
-        return post;
-      } catch (error) {
-        localStorage.removeItem("token");
-        console.log(error);
-      }
-    };
-
-    post();
-
-    login_form({ fullname, username, email, password, confirmpassword });
-    navigate("/home");
   };
   return (
     <div className="container_fluid vh-100 bg-info d-flex align-items-center justify-content-center">
