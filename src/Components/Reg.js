@@ -14,20 +14,20 @@ function Reg({ login_form }) {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmpassword = e.target.confirmpassword.value;
-    // const alert_default = () => {
-    //   setTimeout(() => {
-    //     alertRef.current.classList.add("collapse");
-    //   }, 2000);
-    // };
+    const alert_default = () => {
+      setTimeout(() => {
+        alertRef.current.classList.add("collapse");
+      }, 2000);
+    };
 
-    // if (password !== confirmpassword) {
-    //   return (
-    //     alertRef.current.classList.remove("collapse"),
-    //     alertRef.current.classList.add("bg-danger", "text-light"),
-    //     (alertRef.current.textContent = "Your Password Does Not Matched"),
-    //     alert_default()
-    //   );
-    // }
+    if (password !== confirmpassword) {
+      return (
+        alertRef.current.classList.remove("collapse"),
+        alertRef.current.classList.add("bg-danger", "text-light"),
+        (alertRef.current.textContent = "Your Password Does Not Matched"),
+        alert_default()
+      );
+    }
     try {
       const post = await axios.post("https://mian-first-web.onrender.com/api/v1", {
         fullname,
