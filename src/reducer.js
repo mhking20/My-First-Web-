@@ -14,6 +14,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   if (action.type === "REG_FORM") {
+    console.log(state);
     return {
       ...state,
       Reg_fullname: action.payload.fullname,
