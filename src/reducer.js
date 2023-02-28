@@ -8,8 +8,9 @@ const initialState = {
   Account_username: "",
   Account_email: "",
   Account_id: "",
-  auth : true
-};
+  auth: true,
+  loading: false,
+}
 
 const reducer = (state = initialState, action) => {
   if (action.type === "REG_FORM") {
@@ -22,19 +23,32 @@ const reducer = (state = initialState, action) => {
       Reg_confirmPassword: action.payload.confirmPassword,
     };
   }
-  if(action.type === "ACCOUNT_INFO"){
+  if (action.type === "ACCOUNT_INFO") {
     return {
       ...state,
-      Account_fullname : action.payload.fullname,
-      Account_id : action.payload._id,
-      Account_username : action.payload.username,
-      Account_email : action.payload.email,
-    }
+      Account_fullname: action.payload.fullname,
+      Account_id: action.payload._id,
+      Account_username: action.payload.username,
+      Account_email: action.payload.email,
+    };
   }
-  if(action.type === "AUTH"){
+  if (action.type === "AUTH") {
     return {
-      ...state , auth : action.payload
-    }
+      ...state,
+      auth: action.payload,
+    };
+  }
+  if (action.type === "LOADING") {
+    return {
+      ...state,
+      loading: true,
+    };
+  }
+  if (action.type === "!LOADING") {
+    return {
+      ...state,
+      loading: false,
+    };
   }
   return state;
 };

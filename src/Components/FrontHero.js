@@ -2,7 +2,7 @@ import React from "react";
 import "./Styles/Fronthero.css";
 import hero from "./images/mypic.jpg";
 import { Link } from "react-router-dom";
-
+import { connect } from "react-redux";
 function FrontHero() {
   return (
     <div className="container-fluid  bg-info fronthero_color vh-100 d-flex align-items-center justify-content-center">
@@ -25,4 +25,5 @@ function FrontHero() {
   );
 }
 
-export default FrontHero;
+
+export default connect()(FrontHero)

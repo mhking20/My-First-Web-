@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { connect} from "react-redux";
 import { Link } from "react-router-dom";
 import "./Styles/Nav.css";
 
 function Nav() {
-  const removetoken = () => {
-    return localStorage.removeItem("token")
-  }
+  const removetoken = async () => {
+    await localStorage.removeItem("token");
+  };
 
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark bg-dark p-3`}>
@@ -51,21 +52,24 @@ function Nav() {
   );
 }
 function Navfixed() {
-const [height , setheight] = useState(0);
-const classRef = useRef()
-const handlescroll = () => {
-  setheight(window.scrollY)
-}
-window.addEventListener("scroll" , handlescroll);
-useEffect(() => {
-  if(height > 100){
-     classRef.current.classList.remove('collapse')
-  }else{
-    classRef.current.classList.add('collapse')
-  }
-})
+  const [height, setheight] = useState(0);
+  const classRef = useRef();
+  const handlescroll = () => {
+    setheight(window.scrollY);
+  };
+  window.addEventListener("scroll", handlescroll);
+  useEffect(() => {
+    if (height > 100) {
+      classRef.current.classList.remove("collapse");
+    } else {
+      classRef.current.classList.add("collapse");
+    }
+  });
   return (
-    <nav className={`navbar navbar-expand-lg navbar-dark bg-dark p-3 collapse fixed-top`} ref={classRef}>
+    <nav
+      className={`navbar navbar-expand-lg navbar-dark bg-dark p-3 collapse fixed-top`}
+      ref={classRef}
+    >
       <Link to="/home" className="navbar-brand">
         Mian Website
       </Link>
@@ -108,5 +112,5 @@ useEffect(() => {
   );
 }
 
-export default Nav;
-export  {Navfixed}
+export default connect()(Nav);
+export { Navfixed };

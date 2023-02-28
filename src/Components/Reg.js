@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Reg({ login_form }) {
+function Reg({ login_form, Loading, NoLoading , demo }) {
   const alertRef = useRef();
   const navigate = useNavigate();
   const handelsubmit = async (e) => {
@@ -29,6 +29,7 @@ function Reg({ login_form }) {
       );
     }
     try {
+      Loading();
       const post = await axios.post("https://mian-first-web.onrender.com/api/v1", {
         fullname,
         username,
@@ -38,6 +39,7 @@ function Reg({ login_form }) {
       localStorage.setItem("token", post.data.token);
       login_form({ fullname, username, email, password, confirmpassword });
       navigate("/home");
+      NoLoading();
       return post;
     } catch (error) {
       localStorage.removeItem("token");
@@ -129,6 +131,9 @@ const mapDispatchToProps = (dispatch) => {
         type: "REG_FORM",
         payload: { fullname, username, email, password, confirmpassword },
       }),
+    Loading: () => dispatch({ type: "LOADING" }),
+    NoLoading: () => dispatch({ type: "!LOADING" }),
+    demo : (e) => dispatch({type : "DEMO" , payload : e})
   };
 };
 

@@ -2,8 +2,9 @@ import React, { useRef } from "react";
 import "./Styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
 
-function Login() {
+function Login({ Loading, NoLoading }) {
   const navigate = useNavigate();
   const alertRef = useRef();
   const handelsubmit = async (e) => {
@@ -11,6 +12,7 @@ function Login() {
     const username = e.target.username.value;
     const password = e.target.password.value;
     try {
+      Loading();
       const post = await axios.get("https://mian-first-web.onrender.com/api/v1/login", {
         params: {
           data: {
@@ -19,7 +21,7 @@ function Login() {
           },
         },
       });
-     
+
       const alert_default = () => {
         setTimeout(() => {
           alertRef.current.classList.add("collapse");
@@ -35,13 +37,13 @@ function Login() {
           (e.target.password.value = "")
         );
       }
-      
-      if(post.data.token){
-        const token = post.data.token
-        localStorage.setItem('token' , token )
-        navigate("/home")
+
+      if (post.data.token) {
+        const token = post.data.token;
+        localStorage.setItem("token", token);
+        navigate("/home");
       }
-      
+      NoLoading();
     } catch (error) {
       localStorage.removeItem("token");
       console.log(error);
@@ -64,6 +66,7 @@ function Login() {
               id="username"
               placeholder="Enter username"
               name="username"
+              required
             />
           </div>
           <div className="mb-3">
@@ -74,6 +77,7 @@ function Login() {
               id="password"
               placeholder="Enter password"
               name="password"
+              required
             />
           </div>
           <div className="align-items-center justify-content-center d-flex p-3">
@@ -87,4 +91,11 @@ function Login() {
   );
 }
 
-export default Login;
+const useDispatchToProps = (dispatch) => {
+  return {
+    Loading: () => dispatch({ type: "LOADING" }),
+    NoLoading: () => dispatch({ type: "!LOADING" }),
+  };
+};
+
+export default connect(null, useDispatchToProps)(Login);

@@ -11,57 +11,50 @@ function UpdateAccount({
   current_fullname,
   current_username,
   current_email,
-  account_info,
-  auth_dispatch,
   auth_state,
+  Loading,
+  NoLoading,
+  loading,
 }) {
-  return (
-    <div className="vh-100 bg-info">
-      <Nav />
-      <Navfixed />
-      <Tabel
-        current_fullname={current_fullname}
-        current_username={current_username}
-        current_email={current_email}
-        account_info={account_info}
-        auth_state={auth_state}
-        auth_dispatch={auth_dispatch}
-      />
-      <Foot />
-    </div>
-  );
+  if (loading) {
+    return (
+      <div className="container-fluid vh-100 text-align-center d-flex justify-content-center bg-light">
+        <div className="w-50 h-50 m-auto text-align-center d-flex justify-content-center">
+          <h1 className="text-align-center d-flex justify-content-center m-auto">
+            Loading ...
+          </h1>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="vh-100 bg-info">
+        <Nav />
+        <Navfixed />
+        <Tabel
+          current_fullname={current_fullname}
+          current_username={current_username}
+          current_email={current_email}
+          auth_state={auth_state}
+          Loading={Loading}
+          NoLoading={NoLoading}
+        />
+        <Foot />
+      </div>
+    );
+  }
 }
 
 const Tabel = ({
   current_fullname,
   current_username,
   current_email,
-  account_info,
   auth_state,
-  auth_dispatch,
+  Loading,
+  NoLoading,
 }) => {
   const navigate = useNavigate();
   const Navigate = useNavigate();
-  const auth = async () => {
-    try {
-      if (localStorage.getItem("token")) {
-        const token = localStorage.getItem("token");
-        const gettoken = await axios.get("https://mian-first-web.onrender.com/api/v1/auth", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (gettoken.data.auth) {
-          auth_dispatch(true);
-        } else if (gettoken.data.msg) {
-          auth_dispatch(false);
-        }
-      } else {
-        auth_dispatch(false);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  auth();
   useEffect(() => {
     if (!auth_state) {
       Navigate("/");
@@ -70,6 +63,7 @@ const Tabel = ({
   const handelSubmit = async (e) => {
     e.preventDefault();
     try {
+      Loading();
       const token = localStorage.getItem("token");
       let fullname = e.target.fullname.value;
       let username = e.target.username.value;
@@ -84,34 +78,18 @@ const Tabel = ({
         email = current_email;
       }
       const update = await axios.patch(
-        "http://localhost:3001/api/v1/user",
+        "https://mian-first-web.onrender.com/api/v1/user",
         { fullname, username, email },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(update);
       navigate("/account");
+      NoLoading();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const get = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const get = await axios.get("http://localhost:3001/api/v1/user", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const info = get.data.get;
-      account_info(info._id, info.fullname, info.username, info.email);
-    } catch (error) {
-      localStorage.removeItem("token");
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    get();
-  });
   return (
     <div className="d-flex justify-content-center align-items-center mt-5">
       <form
@@ -153,6 +131,7 @@ const useStateToProps = (state) => {
     current_username: state.Account_username,
     current_email: state.Account_email,
     auth_state: state.auth,
+    loading: state.loading,
   };
 };
 
@@ -163,7 +142,8 @@ const useDispatchToState = (dispatch) => {
         type: "ACCOUNT_INFO",
         payload: { _id, fullname, username, email },
       }),
-    auth_dispatch: (e) => dispatch({ type: "AUTH", payload: e }),
+    Loading: () => dispatch({ type: "LOADING" }),
+    NoLoading: () => dispatch({ type: "!LOADING" }),
   };
 };
 
