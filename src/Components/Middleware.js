@@ -1,9 +1,9 @@
 import axios from "axios";
 const Auth = async (dispatch) => {
   if (
-    window.location.href !== "https://mian-first-web.onrender.com/" &&
-    window.location.href !== "https://mian-first-web.onrender.com/login" &&
-    window.location.href !== "https://mian-first-web.onrender.com/reg"
+    window.location.href !== "https://mian-first-web.netlify.app/" &&
+    window.location.href !== "https://mian-first-web.netlify.app/login" &&
+    window.location.href !== "https://mian-first-web.netlify.app/reg"
   ) {
     try {
       if (localStorage.getItem("token")) {
