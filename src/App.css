@@ -22,8 +22,17 @@ td {
     text-align: center;
 }
 
+.bg-App{
+    background-image: linear-gradient(violet , indigo);
+}
+
+.text-App{
+    color: rgb(110, 3, 3);
+}
+
 @media only screen and (max-width : 400px){
     .textsm{
         font-size: medium;
     }
 }
+

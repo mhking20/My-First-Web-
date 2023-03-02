@@ -1,15 +1,45 @@
 import React, { useEffect, useRef, useState } from "react";
-import { connect} from "react-redux";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Styles/Nav.css";
 
+function handleTheme_1() {
+  const keys = ["theme_2", "default_theme"];
+  for (const key of keys) {
+    localStorage.removeItem(key);
+  }
+  localStorage.setItem("theme_1", true);
+  window.location.reload()
+}
+
+function handleTheme_2() {
+  const keys = ["theme_1", "default_theme"];
+  for (const key of keys) {
+    localStorage.removeItem(key);
+  }
+  localStorage.setItem("theme_2", true);
+  window.location.reload()
+}
+
+function handledefault_theme() {
+  const keys = ["theme_2", "theme_1"];
+  for (const key of keys) {
+    localStorage.removeItem(key);
+  }
+  localStorage.setItem("default_theme", true);
+  window.location.reload()
+}
+
 function Nav() {
   const removetoken = async () => {
-    await localStorage.removeItem("token");
+    const keys = ["token", "auth", "demo"];
+    for (const key of keys) {
+      localStorage.removeItem(key);
+    }
   };
 
   return (
-    <nav className={`navbar navbar-expand-lg navbar-dark bg-dark p-3`}>
+    <nav className={`navbar navbar-expand-lg  p-3 navbar-dark bg-dark`}>
       <Link to="/home" className="navbar-brand">
         Mian Website
       </Link>
@@ -41,6 +71,39 @@ function Nav() {
               Account
             </Link>
           </li>
+          <li className="nav-item dropdown d-flex">
+            <div
+              className="nav-link dropdown-toggle btn"
+              id="themes-toggler"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Themes
+            </div>
+            <div
+              aria-describedby="themes-toggler"
+              className="dropdown-menu bg-dark"
+            >
+              <p
+                className="dropdown-item  bg-dark text-light btn"
+                onClick={() => handleTheme_1()}
+              >
+                Theme 1
+              </p>
+              <p
+                className="dropdown-item  bg-dark text-light btn"
+                onClick={() => handleTheme_2()}
+              >
+                Theme 2
+              </p>
+              <p
+                className="dropdown-item  bg-dark text-light btn"
+                onClick={() => handledefault_theme()}
+              >
+                Default Theme
+              </p>
+            </div>
+          </li>
           <li className="nav-item">
             <Link to="/" className="nav-link" onClick={() => removetoken()}>
               Logout
@@ -54,6 +117,14 @@ function Nav() {
 function Navfixed() {
   const [height, setheight] = useState(0);
   const classRef = useRef();
+
+  const removetoken = async () => {
+    const keys = ["token", "auth", "demo"];
+    for (const key of keys) {
+      localStorage.removeItem(key);
+    }
+  };
+
   const handlescroll = () => {
     setheight(window.scrollY);
   };
@@ -65,6 +136,7 @@ function Navfixed() {
       classRef.current.classList.add("collapse");
     }
   });
+
   return (
     <nav
       className={`navbar navbar-expand-lg navbar-dark bg-dark p-3 collapse fixed-top`}
@@ -101,8 +173,41 @@ function Navfixed() {
               Account
             </Link>
           </li>
+          <li className="nav-item dropdown d-flex">
+            <div
+              className="nav-link dropdown-toggle btn"
+              id="themes-toggler"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Themes
+            </div>
+            <div
+              aria-describedby="themes-toggler"
+              className="dropdown-menu bg-dark"
+            >
+              <p
+                className="dropdown-item  bg-dark text-light btn"
+                onClick={() => handleTheme_1()}
+              >
+                Theme 1
+              </p>
+              <p
+                className="dropdown-item  bg-dark text-light btn"
+                onClick={() => handleTheme_2()}
+              >
+                Theme 2
+              </p>
+              <p
+                className="dropdown-item  bg-dark text-light btn"
+                onClick={() => handledefault_theme()}
+              >
+                Default Theme
+              </p>
+            </div>
+          </li>
           <li className="nav-item">
-            <Link to="/" className="nav-link">
+            <Link to="/" className="nav-link" onClick={() => removetoken()}>
               Logout
             </Link>
           </li>

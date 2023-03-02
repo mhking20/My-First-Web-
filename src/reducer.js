@@ -8,9 +8,13 @@ const initialState = {
   Account_username: "",
   Account_email: "",
   Account_id: "",
-  auth: true,
+  auth: false,
   loading: false,
-}
+  demo: true,
+  theme_1: false,
+  theme_2: false,
+  default_theme: true,
+};
 
 const reducer = (state = initialState, action) => {
   if (action.type === "REG_FORM") {
@@ -25,18 +29,23 @@ const reducer = (state = initialState, action) => {
     };
   }
   if (action.type === "ACCOUNT_INFO") {
+    localStorage.setItem(
+      "account_info",
+      JSON.stringify({
+        fullname: action.payload.fullname,
+        id: action.payload._id,
+        username: action.payload.username,
+        email: action.payload.email,
+      })
+    );
     return {
       ...state,
-      Account_fullname: action.payload.fullname,
-      Account_id: action.payload._id,
-      Account_username: action.payload.username,
-      Account_email: action.payload.email,
     };
   }
   if (action.type === "AUTH") {
+    localStorage.setItem("auth", action.payload);
     return {
       ...state,
-      auth: action.payload,
     };
   }
   if (action.type === "LOADING") {

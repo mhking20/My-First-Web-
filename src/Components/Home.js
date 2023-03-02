@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Styles/Home.css";
 import Nav from "./Nav";
 import { Navfixed } from "./Nav";
@@ -6,14 +6,32 @@ import Foot from "./Foot";
 import Intro from "./Intro";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Auth, Get } from "./Middleware";
 
-function Home({ auth_state, loading}) {
+function Home({ loading, Auth, Get }) {
   const navigate = useNavigate();
+  const elRef = useRef(null);
 
   useEffect(() => {
-    if (!auth_state) {
-      navigate("/");
-      localStorage.removeItem("token");
+    if (localStorage.getItem("demo") === "false") {
+      Get();
+      Auth();
+      const sign = localStorage.getItem("auth");
+      if (sign === "false") {
+        navigate("/");
+        const keys = ["auth", "token", "demo"];
+        for (const key of keys) {
+          localStorage.removeItem(key);
+        }
+      }
+    }
+    if (localStorage.getItem("theme_1") === "true") {
+      elRef.current.classList.remove("bg-info", "bg-primary");
+      elRef.current.classList.add("bg-App");
+    }
+    if (localStorage.getItem("theme_2") === "true") {
+      elRef.current.classList.remove("bg-info", "bg-App");
+      elRef.current.classList.add("bg-primary");
     }
   });
   if (loading) {
@@ -28,7 +46,7 @@ function Home({ auth_state, loading}) {
     );
   } else {
     return (
-      <div className="vh-100 bg-info">
+      <div className="vh-100 bg-info" ref={elRef}>
         <Nav />
         <Navfixed />
         <Intro />
@@ -40,9 +58,15 @@ function Home({ auth_state, loading}) {
 
 const useStateToProps = (state) => {
   return {
-    auth_state: state.auth,
     loading: state.loading,
   };
 };
 
-export default connect(useStateToProps)(Home);
+const useDispatchToProps = (dispatch) => {
+  return {
+    Auth: () => Auth(dispatch),
+    Get: () => Get(dispatch),
+  };
+};
+
+export default connect(useStateToProps, useDispatchToProps)(Home);

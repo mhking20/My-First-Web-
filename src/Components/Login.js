@@ -3,12 +3,15 @@ import "./Styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
+import { Auth } from "./Middleware";
 
 function Login({ Loading, NoLoading }) {
   const navigate = useNavigate();
   const alertRef = useRef();
+  Auth();
   const handelsubmit = async (e) => {
     e.preventDefault();
+    localStorage.setItem("demo", false);
     const username = e.target.username.value;
     const password = e.target.password.value;
     try {

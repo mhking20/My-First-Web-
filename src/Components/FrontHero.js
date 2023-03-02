@@ -1,9 +1,18 @@
 import React from "react";
 import "./Styles/Fronthero.css";
 import hero from "./images/mypic.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
+import { Auth } from "./Middleware";
+
 function FrontHero() {
+  const navigate = useNavigate()
+  Auth()
+  const handleDemo = () => {
+      localStorage.setItem("demo" , true)
+      navigate("/home")
+  }
+  
   return (
     <div className="container-fluid  bg-info fronthero_color vh-100 d-flex align-items-center justify-content-center">
       <div className="shadow bg-dark  fronthero_container p-4">
@@ -19,6 +28,7 @@ function FrontHero() {
           <Link to="reg">
             <button className="btn btn-danger m-2">Register</button>
           </Link>
+            <button className="btn btn-secondary m-2" onClick={() => handleDemo()}>Demo</button>
         </div>
       </div>
     </div>
