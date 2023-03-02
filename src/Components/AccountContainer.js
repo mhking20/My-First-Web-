@@ -28,7 +28,11 @@ function AccountContainer({ Loading, NoLoading, Get }) {
   };
   const elRef = useRef(null);
   const el2Ref = useRef(null);
-  const info = JSON.parse(localStorage.getItem("account_info"));
+
+  const info = async () => {
+   return info =  await JSON.parse(localStorage.getItem("account_info"));
+  }
+
 
   useEffect(() => {
     if (localStorage.getItem("demo") === "false") {
