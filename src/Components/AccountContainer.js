@@ -13,9 +13,12 @@ function AccountContainer({ Loading, NoLoading, Get }) {
     try {
       Loading();
       const token = localStorage.getItem("token");
-      const dell = await axios.delete("https://mian-first-web.onrender.com/api/v1/user", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const dell = await axios.delete(
+        "http://localhost:3001/api/v1/user/user",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       localStorage.removeItem("token");
       navigate("/reg");
       console.log(dell);
@@ -29,8 +32,7 @@ function AccountContainer({ Loading, NoLoading, Get }) {
   const elRef = useRef(null);
   const el2Ref = useRef(null);
 
-  
-  const info =  JSON.parse(localStorage.getItem("account_info"));
+  const info = JSON.parse(localStorage.getItem("account_info"));
 
   useEffect(() => {
     if (localStorage.getItem("demo") === "false") {
@@ -121,7 +123,10 @@ function AccountContainer({ Loading, NoLoading, Get }) {
         className="container-fluid text-light bg-dark d-flex justify-content-center align-items-center mt-5 account_container"
         ref={elRef}
       >
-        <h3 ref={el2Ref} className="p-5"> Please Login or Register To Watch Your Account </h3>
+        <h3 ref={el2Ref} className="p-5">
+          {" "}
+          Please Login or Register To Watch Your Account{" "}
+        </h3>
       </div>
     );
   }

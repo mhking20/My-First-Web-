@@ -112,7 +112,7 @@ const Tabel = ({ Loading, NoLoading, Auth, Get }) => {
           email = info.email;
         }
         await axios.patch(
-          "https://mian-first-web.onrender.com/api/v1/user",
+          "https://mian-first-web.onrender.com/api/v1/user/user",
           { fullname, username, email },
           { headers: { Authorization: `Bearer ${token}` } }
         );

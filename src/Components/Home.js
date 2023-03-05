@@ -11,7 +11,7 @@ import { Auth, Get } from "./Middleware";
 function Home({ loading, Auth, Get }) {
   const navigate = useNavigate();
   const elRef = useRef(null);
-
+  Get();
   useEffect(() => {
     if (localStorage.getItem("demo") === "false") {
       Get();

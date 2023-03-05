@@ -48,7 +48,7 @@ function Projects({ loading, Auth }) {
     );
   } else {
     return (
-      <div className="bg-info h-100" ref={elRef}>
+      <div className="bg-info vh-100" ref={elRef}>
         <Nav />
         <Navfixed />
         <ProjectsIntro />

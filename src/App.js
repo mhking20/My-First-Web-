@@ -8,6 +8,7 @@ import Home from "./Components/Home";
 import Projects from "./Components/Projects";
 import Account from "./Components/Account";
 import UpdateAccount from "./Components/UpdateAccount";
+import TaskManager from "./Projects/Task_Manager/App"
 
 function App() {
 
@@ -39,6 +40,10 @@ function App() {
     {
       path: "updateaccount",
       element: <UpdateAccount />,
+    },
+    {
+      path: "task_manager",
+      element: <TaskManager />,
     },
   ]);
   return (

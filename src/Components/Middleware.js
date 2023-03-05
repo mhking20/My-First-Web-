@@ -8,7 +8,7 @@ const Auth = async (dispatch) => {
     try {
       if (localStorage.getItem("token")) {
         const token = localStorage.getItem("token");
-        const gettoken = await axios.get("https://mian-first-web.onrender.com/api/v1/auth", {
+        const gettoken = await axios.get("https://mian-first-web.onrender.com/api/v1/user/auth", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (gettoken.data.auth) {
@@ -31,7 +31,7 @@ const Get = async (dispatch) => {
   try {
     if(localStorage.getItem("token")){ 
     const token = localStorage.getItem("token");
-    const get = await axios.get("https://mian-first-web.onrender.com/api/v1/user", {
+    const get = await axios.get("https://mian-first-web.onrender.com/api/v1/user/user", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const info = get.data.get;
