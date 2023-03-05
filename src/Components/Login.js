@@ -15,14 +15,17 @@ function Login({ Loading, NoLoading, loading }) {
     const username = e.target.username.value;
     const password = e.target.password.value;
     try {
-      const post = await axios.get("https://mian-first-web.onrender.com/api/v1/user/login", {
-        params: {
-          data: {
-            username,
-            password,
+      const post = await axios.get(
+        "https://mian-first-web.onrender.com/api/v1/user/login",
+        {
+          params: {
+            data: {
+              username,
+              password,
+            },
           },
-        },
-      });
+        }
+      );
       const alert_default = () => {
         setTimeout(() => {
           alertRef.current.classList.add("collapse");
@@ -30,7 +33,7 @@ function Login({ Loading, NoLoading, loading }) {
       };
       if (post.data.msg) {
         return (
-         await NoLoading(),
+           NoLoading(),
           alertRef.current.classList.remove("collapse"),
           alertRef.current.classList.add("bg-danger", "text-light"),
           (alertRef.current.textContent = post.data.msg),
@@ -38,10 +41,8 @@ function Login({ Loading, NoLoading, loading }) {
           (e.target.username.value = ""),
           (e.target.password.value = "")
         );
-      }
-
-      if (post.data.token) {
-        await NoLoading();
+      } else if (post.data.token) {
+         NoLoading();
         const token = post.data.token;
         localStorage.setItem("token", token);
         navigate("/home");
