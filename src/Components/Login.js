@@ -33,7 +33,7 @@ function Login({ Loading, NoLoading, loading }) {
       };
       if (post.data.msg) {
         return (
-           NoLoading(),
+          await NoLoading(),
           alertRef.current.classList.remove("collapse"),
           alertRef.current.classList.add("bg-danger", "text-light"),
           (alertRef.current.textContent = post.data.msg),
@@ -41,8 +41,8 @@ function Login({ Loading, NoLoading, loading }) {
           (e.target.username.value = ""),
           (e.target.password.value = "")
         );
-      } else if (post.data.token) {
-         NoLoading();
+      } else if(post.data.token) {
+        await  NoLoading();
         const token = post.data.token;
         localStorage.setItem("token", token);
         navigate("/home");
